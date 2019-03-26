@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="report" namespace="/report" extends="struts-default">
+		<action name="report_*" class="reportAction" method="{1}">
+			<result name="report_week_list">
+				/WEB-INF/page/report/old_reportWeekList.jsp
+			</result>
+			<result name="report_list">
+				/WEB-INF/page/report/old_reportList.jsp				
+			</result>
+			<result name="to_report_detail">
+				/WEB-INF/page/report/old_weekInfo.jsp
+			</result>
+			<result name="inews_message_list">
+				/WEB-INF/page/report/inewsMessageList.jsp
+			</result>
+			<result name="inews_report_list">
+				/WEB-INF/page/report/inewsReportList.jsp
+			</result>
+		</action>
+	</package>
+	
+</struts>

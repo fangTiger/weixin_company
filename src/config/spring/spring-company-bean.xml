@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+		
+	<!-- 配置系统用户，菜单，权限数据库 -->	
+		
+	<!-- 扫描注入哪个包下java文件 -->	
+	<context:component-scan base-package="cn.system" />
+	<!-- 数据源管理 -->
+	<bean id="systemDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://192.168.0.224:3306/company_manage?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<!-- <property name="jdbcUrl" value="jdbc:mysql://192.168.10.244:3306/company_manage?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=utf8" />
+		<property name="user" value="root" />
+		<property name="password" value="abc.123" /> -->
+			
+		<!-- 初始化时获得的连接数,取值应在minPoolSize和maxPoolSize之间,默认是3 -->
+		<property name="initialPoolSize" value="1" />
+		<!-- 连接池中保留的最小连接数 -->
+		<property name="minPoolSize" value="1" />
+		<!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 --> 
+		<property name="maxIdleTime" value="60" /> 
+		<!--连接池中保留的最大连接数。Default: 15 --> 
+		<property name="maxPoolSize" value="15" /> 
+		<!-- 当连接池耗尽的时候c3p0一次性获取的连接数， 默认是3 -->
+		<property name="acquireIncrement" value="5" />
+		<!-- 隔多久检查连接池中的空闲连接 ,默认是0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+	</bean>
+ 	<!-- 
+ 	 -->
+	<bean id="systemJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	        <property name="dataSource" ref="systemDataSource" />
+	</bean>
+ 
+	<!-- 事务管理器  -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="systemDataSource" />
+	</bean>
+	
+	<!-- 常量配置 
+	<bean id="commonPublic" class="cn.goso.systemManage.common.CommonPublic">
+		<property name="systemManageCode" value="25" />
+	</bean>
+	 -->
+
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- get方法不走事务 
+			<tx:method name="get*,find*" read-only="true" propagation="NOT_SUPPORTED"/>
+			-->
+			<!-- 支持当前事务，如果当前没有事务，就新建一个事务  -->
+			<tx:method name="*"  rollback-for="Exception" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* cn.system.basic..service.impl..*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointcut" />
+	</aop:config>
+	
+</beans>

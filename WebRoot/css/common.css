@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+/*背景色*/
+body{
+  background-color: #efeff4;
+  font-family: "Microsoft YaHei",simsun;
+}
+.cell{
+	border-bottom:1px solid rgb(200, 200, 200);
+}
+      /*标题属性*/
+.weui_cells_title {
+	font-size:16px;
+	padding-left: 0px;
+	line-height: 2.2;
+	background-color: #F6F3EE;
+	margin-top:0em;
+	margin-bottom:0em;
+	border-bottom:1px solid rgb(200, 200, 200);
+}
+/*标题属性-p标签*/
+.weui_cells_title p{
+	border-left: 0.3em solid #2779B5;
+}
+/*标题属性-p标签-span标签*/
+.weui_cells_title p span{
+	margin-left: 5px;color: #666;
+}
+/*标题标图属性*/
+.page_title {
+	text-align:center;
+	font-size:30px;
+	font-weight:400;
+	margin:0 15%
+}
+.weui_cells {
+	background-color: #fff;
+}
+.weui_cells:after,.weui_cells:before {
+	color:#8f8f8f;
+}
+.weui_cells:after {
+	border-bottom:2px solid rgb(200, 200, 200);
+}
+/*内容间隔线大小及颜色控制 */
+.weui_cell:before {
+	border-top:1px solid #e5e5e5;
+	color:#8f8f8f;
+}
+/*叹号图标样式与大小控制 */
+.weui_icon_info:before {
+	font-size:18px;
+	color:#3A9ED9;
+}
+
+/*获取更多图标样式与大小控制 */
+.weui_icon_download:before {
+	font-size:18px;
+	color:#FFB402;
+}
+
+.weui_cell_bd{
+	margin-left: 10px;
+}
+/*内容字体颜色*/
+.weui_cells,.weui_cells_access div a span{
+	color: #666;
+	font-size: 14px;
+}
+/*logo样式*/
+.logo_class{
+	margin: 10px !important;
+	/*width:112px;*/
+	height:53px;
+}
+/*更多信息样式*/
+.more_msg{
+	width: 185px;
+	margin: 20 auto 40;
+}
+/*更多信息样式-a标签*/
+.more_msg a{
+	padding: 0px 0px;
+	background-color: rgb(227, 227, 227);
+}
+/*更多信息样式-span标签*/
+.more_msg span{
+	color: #666;
+}
+.title_span{
+	border-left: 0.3em solid #2779B5;
+}
+.weui_article,.title{
+	font-weight: normal;
+	color: #666;
+}
+.weui_article1{
+	font-weight: normal;
+	color: #666;
+	font-size: 15px;
+}
+/*预警正文样式*/
+.weui_article{
+	padding: 0px 15px;
+}
+.weui_article p {
+	margin: 0px 0;
+}
+.weui_article section{
+	margin-bottom: 0.5em;
+}
+.article{
+	border-bottom:2px solid rgb(200, 200, 200);
+	border-top:2px solid rgb(200, 200, 200);
+	background-color: white;
+}
+
+/*加载图片*/
+.weui_loading img{
+	margin: -10px -20px;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="warning" namespace="/warning" extends="struts-default">
+		<action name="warning_*" class="warningAction" method="{1}">
+			<result name="to_wList">
+				/WEB-INF/page/warning/warningList.jsp
+			</result>
+			<result name="to_wLevel">
+				/WEB-INF/page/warning/warningLevels.jsp
+			</result>
+			<result name="to_warning">
+				/WEB-INF/page/warning/warningInfo.jsp
+			</result>
+		</action>
+	</package>
+</struts>
